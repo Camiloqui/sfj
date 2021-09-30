@@ -125,9 +125,10 @@ function recursos(){
 		
 function agregarProceso(){
 	var T;
-	var rec =$('#sel').val();	
+
 	for (var i = 0; i < Disp.length; i++) {
-		if(Disp[i].nombre==rec)break;
+		if(Disp[i].nombre=="Parlantes")break;
+		
 	}
 
 	if($('#t1').val() != "" && $('#t1').val()>0){

@@ -347,7 +347,7 @@ function DiagramarProceso(nodo){
 	var text = "";
 	if(nodo!=null){
 		text +="<p>Proceso: "+nodo.proceso;
-		text +="<p>Tiempo de Ejecución:"+nodo.tiempo;
+		text +="<p>Tiempo de Ejecución: "+(nodo.tiempo*10);
 	}else{
 		$("#proceso").animate({opacity:'0'},100);
 	}

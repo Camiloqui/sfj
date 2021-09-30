@@ -128,7 +128,6 @@ function agregarProceso(){
 	var rec =$('#sel').val();	
 	for (var i = 0; i < Disp.length; i++) {
 		if(Disp[i].nombre==rec)break;
-		
 	}
 
 	if($('#t1').val() != "" && $('#t1').val()>0){
@@ -322,7 +321,7 @@ function DiagramarCola(i){
 	text +="<ul class='lista'>";
 	while(!cola.vacia()){
 		nodo = cola.extraerPrimero();
-		text +="<li><p>Proceso:"+nodo.proceso+ "  Rafaga:"+ nodo.tiempo + "</p></li>";
+		text +="<li><p>Proceso:"+nodo.proceso+ "  Rafaga:"+ (nodo.tiempo*10) + "</p></li>";
 	}	
 	text +="</ul>";
 	$(textoCola).html(text);
@@ -364,7 +363,7 @@ function bloqueo(n){
 }
 
 function DiagramarGant(n){	
-	ctx.fillStyle="#5353FF";
+	ctx.fillStyle="#1C0D02";
 	ctx.font="20px Arial";
 	for(i=0;i<CantidadProcesos;i++){
 		if(i==n){
@@ -372,7 +371,7 @@ function DiagramarGant(n){
 		}else{
 			gant[i].push(0);
 		}
-		ctx.fillText("proceso"+(i+1),10,22*(i+1));
+		ctx.fillText("Proceso "+(i+1),10,22*(i+1));
 	}
 	for(i=0;i<CantidadProcesos;i++){
 		var ultimo = gant[i].length-1;
@@ -435,10 +434,7 @@ function mensaje(p, r){
 	if(r==0){
 		for (var i = 0; i < Disp.length; i++) {
 		if(Disp[i].nombre==p.recurso.nombre){
-			text+=p.recurso.nombre+" "+"Ocupado   ";
-			for (var j = 0; j < Disp.length; j++){
-				text+=" "+Disp[j].estado;
-			}
+			text+="Ocupado";
 		}
 	}
 		$("#mensaje").html("<p>"+text+"</p>");

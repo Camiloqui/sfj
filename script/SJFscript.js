@@ -91,7 +91,6 @@ $(document).ready(function(){
 		})
 
   $('#btn_proceso1').on("click",agregarProceso);
-  $('#metricasf').on("click",calcularMetrica);
 
   $('#recursosadd').on('click',function(){
 			$('#contenedorR').slideToggle('slow','swing');//linear o swing mirar librerias para mas efectos
@@ -222,7 +221,7 @@ function SJF(){
 	var hilo=setInterval(function(){
 		if (pausar==false) {
 			agregarRecurso(Disp);
-			$("#reloj").html("Sección Crítica: "+clock+" ticks");
+			$("#reloj").html("Sección Crítica: "+(clock*10)+" ticks");
 			clock= Math.round((clock+0.1)*10)/10;
 
 			if(Tiempo0){
@@ -347,9 +346,8 @@ function TransicionDibujo(nodo, n){
 function DiagramarProceso(nodo){
 	var text = "";
 	if(nodo!=null){
-		text +="<p>proceso "+nodo.proceso;
+		text +="<p>Proceso: "+nodo.proceso;
 		text +="<p>Tiempo de Ejecución:"+nodo.tiempo;
-		text += "<p> Recurso :"+nodo.recurso.nombre;
 	}else{
 		$("#proceso").animate({opacity:'0'},100);
 	}
@@ -472,15 +470,15 @@ function calcularMetrica1(cp,c,st){
 	// 	$("#p1").html( cp +" Procesos");
 	// });
 	var metrica = 0;
-    metrica = ((c - st)/cp);
+    metrica = ((c - st)/cp)*10;
 
-    vmetricaUno = metrica.toFixed(3);
+    vmetricaUno = metrica.toFixed(0);
     $("#met1").html( vmetricaUno + " ticks");
     
-    vTUno = c.toFixed(3);
+    vTUno = (c*10).toFixed(0);
     $("#t1").html( vTUno + " ticks");// Tiempo sección critica
 
-    vEUno = (c-st).toFixed(3);
+    vEUno = ((c-st)*10).toFixed(0);
     $("#e1").html( vEUno +" ticks"); // Tiempo en espera
 
     cpUno = cp;

@@ -15,87 +15,30 @@
 	<title>Shortest Job First - Programa</title>
 </head>
 <body>
-
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.html">Inicio</a></li>
-					<!--<li><a href="acerca.html">Acerca de</a></li>
-					-->
-					<li style="margin-top: 8px;">
-						<!--<button id="recursosadd" type="button" class="btn btn-info" id="btn_recursos">Mostrar Recursos</button>-->
-						<button type="button" class="btn btn-info" id="btnP1">Pausar CPU</button>
-						<button type="button" class="btn btn-info" id="btnIniciar" style="display:none">Iniciar CPU</button>
-						<!-- <select id="selectPausar">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-						</select> -->
-					</li>
-				</ul>
-			</div><!--/.nav-collapse -->
-		</div>
-	</div>
 	<!--- Cuerpo -->
 	<!--Recursos-->
 	<br>
-	<div id="convenciones">
-		<h3 id="tituloConv">Leyenda</h2>
-		<li style="color:#8258FA;">Proceso Nuevo</li>
-		<li style="color:#40FF00;">Proceso en Seccion Critica</li>
-		<li style="color:white;">Proceso en cola de Listos</li>
-		<li style="color:#FACC2E;">Proceso en cola de Suspendidos</li>
-		<li style="color:#FA5858;">Proceso en cola de Bloqueados</li>
-		<li style="color:#58D3F7;">Proceso Terminado</li>
-		<!-- <span class="convItem" style="color:#8258FA;">Proceso Nuevo</span>
-		<span class="convItem" style="color:#40FF00;">Zona Critica</span>
-		<span class="convItem" style="color:#white;">Listos</span>
-		<span class="convItem" style="color:#FACC2E;">Suspendidos</span>
-		<span class="convItem" style="color:#FA5858;">Bloqueados</span>
-		<span class="convItem" style="color:#58D3F7;">Terminado</span> -->
-	</div>
-	<!--	<div id="contenedorR">
-		<div style="" >
-			<h2>Recursos Existentes</h2>
-			<div id="recursos">
-				<ul id="listaR">
 
-				</ul>
-			</div>
-		</div>
-		<h2>Agregar Recursos</h2>
-
-		<div class="">
-			<p>Ingrese el nombre del recurso</p>
-			<input class="inputs" id="i_recurso" type="text" ></input>	
-			<br>
-			<button type="button" class="btn btn-info" id="btn_recursos">Agregar</button>	
-		</div>	
-	</div>	-->
 		<div id="contenedor2" class="contWrapper procesadorUno">
 			<div id="contenedorP1" class="contenedoresProc">
 				<h2 class="procesos"><p class="bg-primary titleProcesoUno">Agregar Procesos</p></h2>	
-				<p>Ingrese el recurso a utilizar</p>	
-
 				<!--<select id="sel"></select>
 				--><button type="button" class="btn btn-info" id="btn_proceso1">Agregar</button></p></h2>
+				<button type="button" class="btn btn-info" id="btnP1">Pausar/Reanudar CPU</button>
 			</div>
 			<div class="gettcanvas"><h2><p class="bg-primary titleCPUUno">Tabla de Gantt</p></h2>
 				<div class="contGant"><canvas id="gant"  width="1100" height="500"></canvas></div>
 			</div>
+			<div id="contenedorP1">
+				<p style="color:#beab74;margin-left: 8px;">Proceso en cola de Listos</p>
+				<p style="color:#40FF00;margin-left: 8px;">Proceso en Seccion Critica</p>
+				<!--<p style="color:#58D3F7;margin-left: 8px;">Proceso en cola de Listos</p>-->
+				<p style="color:#FA5858;margin-left: 8px;">Proceso en cola de Bloqueados</p>
+				<p style="color:#FACC2E;margin-left: 8px;">Proceso en cola de Suspendidos</p>
+				<p style="color:#e7d9d9;margin-left: 8px;">Proceso Terminado</p>
+			</div>
 			</div>
 			<!--Agregar proceso-->
-
 
 			<div id="contenedor" class="contWrapper procesadorUno">
 				<h2><p class="bg-primary tituloCPUUno">CPU</p></h2>
@@ -119,42 +62,28 @@
 			</div>
 
 			
-					
 
 					<div id="contenedor7" class="contWrapper contMetricas">
-						<h2><p class="bg-primary tituloMetrica">Metricas por CPU</p></h2>
+						<h2><p class="bg-primary tituloMetrica">Estadísticas</p></h2>
 						
 						<div class="columnaM">
-							<h2><p class="bg-primary">Elementos:</p></h2>
+							<h2><p class="bg-primary">Elemento</p></h2>
 							<table class="table table-striped">
 								<tr><td>Tiempo de Respuesta (T)</td></tr>
 								<tr><td>Tiempo de Espera (E)</td></tr>
 								<tr><td>Numero de procesos (P)</tr>
-								<tr><td>Resultado de la Metrica:</tr>
 							</table>
 						</div>
 						<div class="columnaM">
-							<h2><p class="bg-primary">CPU 1</p></h2>
+							<h2><p class="bg-primary">Respuesta</p></h2>
 							<table class="table table-striped">
 								<tr><td id="t1">0</td></tr>
 								<tr><td id="e1">0</td></tr>
 								<tr><td id="p1">0</td></tr>
-								<tr><td id="met1">0</td></tr>
 							</table>
 						</div>
 
 					</div> 
-					<!--<div id="contenedorM" class="contWrapper contMetricasObte">
-						<h2><p class="bg-primary tituloMetricasObte">Muestra las métricas obtenidas en la simulación</p></h2>
-						<table class="table table-striped">
-							<tr><td>Tiempo de Respuesta (T)</td><td id="tf">0</td></tr>
-							<tr><td>Tiempo de Espera (E)</td><td id="ef">0</td></tr>
-							<tr><td>Numero de procesos (P)</td><td id="pf">0</td></tr>
-							<tr><td>Resultado de la Metrica: </td><td id="metf">0</td></tr>
-						</table>
-					</div>-->
-
-
 
 	<!-- Bootstrap core JavaScript
 	================================================== -->

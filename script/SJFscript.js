@@ -14,10 +14,10 @@ var ct = 0;
 var stt = 0;
 var metricaTotal = 0;
 
-var Parlantes;
-var Puerto;
-var Impresora;
-var Red;
+var Proceso1;
+var Proceso2;
+var Proceso3;
+var Proceso4;
 
 var Disp;
 var Procesos;
@@ -25,7 +25,7 @@ var pausar =false;
 
 var terminado1 = false;
 //Timer de los procesadores
-var timer = 200;
+var timer = 100;
 
 var vmetricaUno;
 var vTUno;
@@ -42,30 +42,25 @@ $(document).ready(function(){
 	ctx=canvas.getContext("2d");
 	
 	bloqueado = false;
-	
-	//CantidadProcesos = Math.floor((Math.random()*3)+5);
+
 	CantidadProcesos = Math.floor((Math.random()*8)+2);//Aleatorio entre 2 y 5	
 	
 	$("#gant").attr("height", 23*CantidadProcesos);
-	// $("#contenedor").height(400 +(CantidadProcesos*32));
-	// $("#contenedor2").height(100 +(CantidadProcesos*23));
-	// $(".columna").height(20+(CantidadProcesos*35));
 	
 	ColaLis = new cola();	
 	ColaBloq = new cola();
 	ColaSus = new cola();
 	ColaTer = new cola();
 		
-	Parlantes = new Dispositivo("Parlantes",0);
-	Puerto = new Dispositivo("Puerto",0);
- 	Impresora = new Dispositivo("Impresora",0);
- 	Red = new Dispositivo("Red",0);
-// alert("esta lelgando2");
+	Proceso1 = new Proceso("Proceso1",0);
+	Proceso2 = new Proceso("Proceso2",0);
+ 	Proceso3 = new Proceso("Proceso3",0);
+ 	Proceso4 = new Proceso("Proceso4",0);
     Disp = new Array();
- 	Disp.push(Parlantes);
- 	Disp.push(Puerto);
- 	Disp.push(Impresora);
- 	Disp.push(Red);	
+ 	Disp.push(Proceso1);
+ 	Disp.push(Proceso2);
+ 	Disp.push(Proceso3);
+ 	Disp.push(Proceso4);	
 	
 	LlenarCola(CantidadProcesos);
 	ColaLis.ordenarQuantum(CantidadProcesos);
@@ -76,44 +71,13 @@ $(document).ready(function(){
 	
 	SJF();	
 	
-	$('#btn_recursos').on("click",function(){			
-			var no =$('#i_recurso').val();	
-			if (no!="") {		
-			Nuevo = new Dispositivo(no,0);
- 	        Disp.push(Nuevo)
- 	        agregarRecurso(Disp);
- 	        $('#sel').append('<option value="'+no+'">'+no+'</option>'); 	        
- 	        $('#i_recurso').val("");
-         }else{
-         	alert("campo vacio");
-         }
-       
-		})
 
   $('#btn_proceso1').on("click",agregarProceso);
 
-  $('#recursosadd').on('click',function(){
-			$('#contenedorR').slideToggle('slow','swing');//linear o swing mirar librerias para mas efectos
-          })
-
   $('#btnP1').on('click',function(){
   	var valor= $('#selectPausar').val();
-  	//if (valor==1) pausar=!pausar;
-  	//if (valor==2) pausar2=!pausar2;
-  	//if (valor==3) pausar3=!pausar3;
   	pausar=!pausar;
-  	document.getElementById('btnP1').style.display = 'none';
-  	document.getElementById('btnIniciar').style.display = 'block';
-  })
-  $('#btnIniciar').on('click',function(){
-  	var valor= $('#selectPausar').val();
-  	//if (valor==1) pausar=!pausar;
-  	//if (valor==2) pausar2=!pausar2;
-  	//if (valor==3) pausar3=!pausar3;
-  	pausar=!pausar;
-  	document.getElementById('btnIniciar').style.display = 'none';
-  	document.getElementById('btnP1').style.display = 'block';
-  })		
+  })	
 });
 
 function recursos(){
@@ -127,7 +91,7 @@ function agregarProceso(){
 	var T;
 
 	for (var i = 0; i < Disp.length; i++) {
-		if(Disp[i].nombre=="Parlantes")break;
+		if(Disp[i].nombre=="Proceso1")break;
 		
 	}
 
@@ -171,7 +135,7 @@ function agregarRecurso(recurso){
  } 
 }
 
-function Dispositivo(nombre,estado){
+function Proceso(nombre,estado){
    this.nombre= nombre;
    this.estado = estado;
 }
@@ -295,7 +259,7 @@ function SJF(){
 			}
 
 			if(nAtendidos == CantidadProcesos){
-				$("#mensaje").html("Todos los procesos se han atendido exitosamente!");
+				$("#mensaje").html("Todos los procesos han sido atendidos.");
 				clearInterval(hilo);
 				ct += clock;
 				cpt += CantidadProcesos;
@@ -378,26 +342,24 @@ function DiagramarGant(n){
 		var ultimo = gant[i].length-1;
 			if(estadosArr[i]== "Critico"){
 				ctx.fillStyle="#40FF00";
-				ctx.fillRect(100+Math.round(gant[i].length/(CantidadProcesos*0.1)),5+(22*i),1,20);
+				ctx.fillRect(100+Math.round(gant[i].length/(CantidadProcesos*0.1)),5+(22*i),2.5,20);
 			}
-			//else{
-				if(estadosArr[i]== "Bloqueado"){
-					ctx.fillStyle="#FA5858";
-					ctx.fillRect(100+Math.round(gant[i].length/(CantidadProcesos*0.1)),5+(22*i),1,20);
-				}if(estadosArr[i]=="Suspendido"){
-					ctx.fillStyle="#FACC2E";
-					ctx.fillRect(100+Math.round(gant[i].length/(CantidadProcesos*0.1)),5+(22*i),1,20);
-				}if(estadosArr[i]=="Nuevo"){
-					ctx.fillStyle="#8258FA";
-					ctx.fillRect(100+Math.round(gant[i].length/(CantidadProcesos*0.1)),5+(22*i),1,20);
-				}if(estadosArr[i]=="Terminado"){
-					ctx.fillStyle="#58D3F7";
-					ctx.fillRect(100+Math.round(gant[i].length/(CantidadProcesos*0.1)),5+(22*i),1,20);
-				}if(estadosArr[i]=="Listo"){
-					ctx.fillStyle="#FFF";
-					ctx.fillRect(100+Math.round(gant[i].length/(CantidadProcesos*0.1)),5+(22*i),1,20);
-				}
-			//}	
+			if(estadosArr[i]== "Bloqueado"){
+				ctx.fillStyle="#FA5858";
+				ctx.fillRect(100+Math.round(gant[i].length/(CantidadProcesos*0.1)),5+(22*i),2.5,20);
+			}if(estadosArr[i]=="Suspendido"){
+				ctx.fillStyle="#FACC2E";
+				ctx.fillRect(100+Math.round(gant[i].length/(CantidadProcesos*0.1)),5+(22*i),2.5,20);
+			}if(estadosArr[i]=="Nuevo"){
+				ctx.fillStyle="#beab74";
+				ctx.fillRect(100+Math.round(gant[i].length/(CantidadProcesos*0.1)),5+(22*i),2.5,20);
+			}if(estadosArr[i]=="Terminado"){
+				ctx.fillStyle="#e7d9d9";
+				ctx.fillRect(100+Math.round(gant[i].length/(CantidadProcesos*0.1)),5+(22*i),2.5,20);
+			}if(estadosArr[i]=="Listo"){
+				ctx.fillStyle="#58D3F7";
+				ctx.fillRect(100+Math.round(gant[i].length/(CantidadProcesos*0.1)),5+(22*i),2.5,20);
+			}
 	}
 
 }

@@ -1,6 +1,6 @@
 body{
 	background-color: #534;
-	/*font-family: Arial;*/
+	font-family: Roboto;
 	color: #000;
 	padding-top: 40px;
 }
@@ -70,11 +70,11 @@ p{
 	color: black;
 }
 .recActivo{
-	color: #08B308;
+	color: #b89259;
 	font-weight: bold;
 }
 .recInactivo{
-	color: #F50A0A;
+	color: #e41b1b;
 	font-weight: bold;
 }
  /*#contenedorP2,#contenedorP3{
@@ -115,7 +115,7 @@ header h2{
 	padding: 5px;
 	width: 98%;
 	height: 150px;
-	background-color: #66bb6a;
+	background-color: #e8e9e9;
 }
 
 #seccion-criticaB{
@@ -125,7 +125,7 @@ header h2{
 	padding: 5px;
 	width: 98%;
 	height: 150px;
-	background-color: #29b6f6;
+	background-color: #f62929;
 }
 
 #seccion-criticaC {
@@ -193,7 +193,7 @@ header h2{
 }
 
 #proceso{
-	background-color:  #2A2B30;
+	background-color:  #582121;
 	width: 250px;
 	color: white;
 	display: inline-block;
@@ -202,8 +202,8 @@ header h2{
 	padding: 5px;
 	opacity: 0;
 	/*border-radius:30px;*/
-	-moz-border-radius:30px 30px 0px 0px;
-	-webkit-border-radius:30px 30px 0px 0px; border:1px solid #707070;
+	-moz-border-radius:20px 20px 20px 20px;
+	-webkit-border-radius:20px 20px 20px 20px; border:1px solid #707070;
 }
 
 #procesoB{
@@ -241,7 +241,7 @@ header h2{
 	padding: 5px;
 	width: 22%;
 	height: 450px;
-	background-color: #1A1A1A;
+	background-color: #ffffff;
 	display: inline-block;
 	float: left;
 	margin-bottom:10px;
@@ -251,9 +251,9 @@ header h2{
 	text-align: center;
 	margin:1%;
 	/*padding: 5px;*/
-	width: 40%;
-	height: 200px;
-	background-color: #1A1A1A;
+	width: 48%;
+	height: 180px;
+	background-color: #ffffff;
 	display: inline-block;
 	float: left;
 	margin-bottom:10px;
@@ -291,7 +291,7 @@ header h2{
 	margin:1%;
 	padding: 5px;
 	width: 90%;
-	background-color: #1A1A1A;
+	background-color: #ececec;
 	display: inline-block;
 }
 .listaB {
@@ -320,7 +320,7 @@ header h2{
 	padding: 5px;
 	width: 90%;
 	height: 90%;
-	background-color: #FD5B5B;
+	background-color: #572121;
 	color: white;
 }
 .listaB li{
@@ -346,7 +346,7 @@ header h2{
 
 #gantB{
 	padding: 5px;
-	background-color: #29b6f6;
+	background-color: #f66329;
 }
 #gantC{
 	padding: 5px;
@@ -366,7 +366,7 @@ header h2{
 }
 
 .procesos .bg-primary{ 
-    background-color: #ccc;
+    background-color: rgb(224, 224, 224);
     color: #fff;
 }
 
@@ -387,7 +387,7 @@ canvas{
 /*------------*/
 
 .contWrapper{
-	margin:10px 17% 10px 3%;
+	margin:10px 35% 10px 3%;
 	width: 80%;
 	/*padding: 20px;*/
 	padding-top: 0px;
@@ -411,13 +411,13 @@ canvas{
 	margin: 0px;
 }
 .titleCPUUno{
-	background-color: #1b5e20 !important;
+	background-color: #9b2d29 !important;
 }
 .gettcanvas{
 	width: 70%;
 	margin-left: 30%;
 	margin-right: 0px;
-    border-left: 2px solid #c8e6c9;
+    border-left: 2px solid #e7d9d9;
 }
 
 #convenciones{
@@ -435,21 +435,21 @@ canvas{
 }
 
 .procesadorUno{
-	background-color: #4caf50;
+	background-color: #722020;
 }
 
 #gant{
 	padding: 5px;
-	background-color: #66bb6a; 
+	background-color: #e0e0e0; 
 }
 .contGant{
 	padding: 20px;
 }
 .tituloCPUUno{
-	background-color: #1b5e20 !important;
+	background-color: #8a2c2c !important;
 }
 .titleProcesoUno{
-	background-color: #1b5e20 !important;
+	background-color: #882929 !important;
 }
 
 .titleCPUDos{
@@ -475,13 +475,13 @@ canvas{
 	background-color: #004d40 !important;
 }
 .tituloMetrica{
-	background-color: #ff6d00 !important;
+	background-color: #ff1c1c !important;
 }
 .contMetricas{
-	background-color: #ff9800 !important;
+	background-color: #ac4c4c !important;
 }
 .columnaM{
-	background-color: #ffb74d !important;
+	background-color: #ffffff !important;
 }
 
 .contMetricasObte{

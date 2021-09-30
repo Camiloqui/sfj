@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+	<script type="text/javascript" src="script/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="script/nodo.js"></script>
+	<script type="text/javascript" src="script/cola.js"></script>	
+	<script type="text/javascript" src="script/SJFscript.js"></script>
+	<script type="text/javascript" src="script/jspdf.js"></script>
+	<script type="text/javascript" src="script/FileSaver.js"></script>
+	<script type="text/javascript" src="script/crear_pdf.js"></script>
+	
+	<link rel="stylesheet" href="dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="dist/css/bootstrap-theme.min.css">
+
+	<title>Simulador del Algoritmo - Round Robin</title>
+</head>
+<body>
+
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="index.html">Inicio</a></li>
+					<li><a href="acerca.html">Acerca de</a></li>
+					<li><button type="button" class="btn btnCrearPDF" onclick="generarInformePDF()">Crear Informe</button></li>
+					<li style="margin-top: 8px;">
+						<!--<button id="recursosadd" type="button" class="btn btn-info" id="btn_recursos">Mostrar Recursos</button>-->
+						<button type="button" class="btn btn-info" id="btnP1">Pausar CPU</button>
+						<button type="button" class="btn btn-info" id="btnIniciar" style="display:none">Iniciar CPU</button>
+						<!-- <select id="selectPausar">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+						</select> -->
+					</li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+	<!--- Cuerpo -->
+	<!--Recursos-->
+	<br>
+	<div id="convenciones">
+		<h3 id="tituloConv">Convenciones</h2>
+		<li style="color:#8258FA;">Proceso Nuevo</li>
+		<li style="color:#40FF00;">Proceso en seccion critica</li>
+		<li style="color:white;">Proceso en cola de Listos</li>
+		<li style="color:#FACC2E;">Proceso en cola de Suspendidos</li>
+		<li style="color:#FA5858;">Proceso en cola de bloqueados</li>
+		<li style="color:#58D3F7;">Proceso terminado</li>
+		<!-- <span class="convItem" style="color:#8258FA;">Proceso Nuevo</span>
+		<span class="convItem" style="color:#40FF00;">Zona Critica</span>
+		<span class="convItem" style="color:#white;">Listos</span>
+		<span class="convItem" style="color:#FACC2E;">Suspendidos</span>
+		<span class="convItem" style="color:#FA5858;">Bloqueados</span>
+		<span class="convItem" style="color:#58D3F7;">Terminado</span> -->
+	</div>
+	<div id="contenedorR">
+		<div style="" >
+			<h2>Recursos Existentes</h2>
+			<div id="recursos">
+				<ul id="listaR">
+
+				</ul>
+			</div>
+		</div>
+		<h2>Agregar Recursos</h2>
+
+		<div class="">
+			<p>Ingrese el nombre del recurso</p>
+			<input class="inputs" id="i_recurso" type="text" ></input>	
+			<br>
+			<button type="button" class="btn btn-info" id="btn_recursos">Agregar</button>	
+		</div>	
+	</div>		
+		<div id="contenedor2" class="contWrapper procesadorUno">
+			<div id="contenedorP1" class="contenedoresProc">
+				<h2 class="procesos"><p class="bg-primary titleProcesoUno">Agregar Procesos</p></h2>	
+				<p>Ingrese el recurso a utilizar</p>	
+
+				<select id="sel"></select>
+				<button type="button" class="btn btn-info" id="btn_proceso1">Agregar</button></p></h2>
+
+			</div>
+			<div class="gettcanvas"><h2><p class="bg-primary titleCPUUno">Tabla de Gantt</p></h2>
+				<div class="contGant"><canvas id="gant"  width="1100" height="500"></canvas></div>
+			</div>
+			</div>
+			<!--Agregar proceso-->
+
+
+			<div id="contenedor" class="contWrapper procesadorUno">
+				<h2><p class="bg-primary tituloCPUUno">CPU 1</p></h2>
+				<div id="reloj"></div>
+				<div id="seccion-critica">
+					<div id="proceso"></div>
+				</div>		
+				<div id="mensaje">
+				</div>
+				<div class="contRespuesta"><div id="respuesta"></div></div>
+				<div id="secciones">
+					<p class="letras">Listos</p>
+					<p class="letras">Bloqueados</p>
+					<p class="letras">Suspendidos</p>
+					<p class="letras">Terminados</p>
+				</div>
+				<div class="columna" id="listos"></div>
+				<div class="columna" id="bloqueados"></div>
+				<div class="columna" id="suspendidos"></div>
+				<div class="columna" id="terminados"></div>
+			</div>
+
+			<div id="contenedor4" class="contWrapper procesadorDos">
+				<div id="contenedorP2" class="contenedoresProc">
+					<h2 class="procesos"><p class="bg-primary titleProcesoDos">Agregar Procesos</p></h2>
+					<p>Ingrese el recurso a utilizar</p>	
+
+					<select id="sel2"></select>
+					<button type="button" class="btn btn-info" id="btn_proceso2">Agregar</button></p></h2>
+
+
+
+				</div>
+				<div class="gettcanvas"><h2><p class="bg-primary titleCPUDos">Tabla de Gantt</p></h2>
+					<div class="contGant"><canvas id="gantB"  width="1100" height="500"></canvas></div></div>
+				</div>
+
+
+				<div id="contenedor" class="contWrapper procesadorDos">
+					<h2><p class="bg-primary titleCPUDos">CPU 2</p></h2>
+					<div id="relojB"></div>
+					<div id="seccion-criticaB">
+						<div id="procesoB"></div>
+					</div>		
+					<div id="mensajeB">
+					</div>
+					<div class="contRespuesta"><div id="respuestaB"></div></div>
+					<div id="seccionesB">
+						<p class="letras">Listos</p>
+						<p class="letras">Bloqueados</p>
+						<p class="letras">Suspendidos</p>
+						<p class="letras">Terminados</p>
+					</div>
+					<div class="columnaB" id="listosB"></div>
+					<div class="columnaB" id="bloqueadosB"></div>
+					<div class="columnaB" id="suspendidosB"></div>
+					<div class="columnaB" id="terminadosB"></div>
+				</div>
+
+				<div id="contenedor6" class="contWrapper procesadorTres">
+					<div id="contenedorP3" class="contenedoresProc">
+						<h2 class="procesos"><p class="bg-primary titleProcesoTres">Agregar Procesos</p></h2>
+						<p>Ingrese el recurso a utilizar</p>	
+						<select id="sel3"></select>
+						<button type="button" class="btn btn-info" id="btn_proceso3">Agregar</button></p></h2>
+
+					</div>	
+					<div class="gettcanvas"><h2><p class="bg-primary titleCPUTres">Tabla de Gantt</p></h2>
+						<div class="contGant"><canvas id="gantC"  width="1100" height="500"></canvas></div></div>
+					</div>
+
+					<div id="contenedor" class="contWrapper procesadorTres">
+						<h2><p class="bg-primary titleProcesoTres">CPU 3</p></h2>
+						<div id="relojC"></div>
+						<div id="seccion-criticaC">
+							<div id="procesoC"></div>
+						</div>		
+						<div id="mensajeC">
+						</div>
+						<div class="contRespuesta"><div id="respuestaC"></div></div>
+						<div id="seccionesC">
+							<p class="letras">Listos</p>
+							<p class="letras">Bloqueados</p>
+							<p class="letras">Suspendidos</p>
+							<p class="letras">Terminados</p>
+						</div>
+						<div class="columnaC" id="listosC"></div>
+						<div class="columnaC" id="bloqueadosC"></div>
+						<div class="columnaC" id="suspendidosC"></div>
+						<div class="columnaC" id="terminadosC"></div>
+					</div>
+
+					<!-- <div id="contenedor7" class="contWrapper contMetricas">
+						<h2><p class="bg-primary tituloMetrica">Metricas por CPU</p></h2>
+						
+						<div class="columnaM">
+							<h2><p class="bg-primary">Elementos:</p></h2>
+							<table class="table table-striped">
+								<tr><td>Tiempo de Respuesta (T)</td></tr>
+								<tr><td>Tiempo de Espera (E)</td></tr>
+								<tr><td>Numero de procesos (P)</tr>
+								<tr><td>Resultado de la Metrica:</tr>
+							</table>
+						</div>
+						<div class="columnaM">
+							<h2><p class="bg-primary">CPU 1</p></h2>
+							<table class="table table-striped">
+								<tr><td id="t1">0</td></tr>
+								<tr><td id="e1">0</td></tr>
+								<tr><td id="p1">0</td></tr>
+								<tr><td id="met1">0</td></tr>
+							</table>
+						</div>
+						<div class="columnaM">
+							<h2><p class="bg-primary">CPU 2</p></h2>
+							<table class="table table-striped">
+								<tr><td id="t2">0</td></tr>
+								<tr><td id="e2">0</td></tr>
+								<tr><td id="p2">0</td></tr>
+								<tr><td id="met2">0</td></tr>
+							</table>
+						</div>
+						<div class="columnaM">
+							<h2><p class="bg-primary">CPU 3</p></h2>
+							<table class="table table-striped">
+								<tr><td id="t3">0</td></tr>
+								<tr><td id="e3">0</td></tr>
+								<tr><td id="p3">0</td></tr>
+								<tr><td id="met3">0</td></tr>
+							</table>
+						</div>
+					</div> -->
+					<!--<div id="contenedorM" class="contWrapper contMetricasObte">
+						<h2><p class="bg-primary tituloMetricasObte">Muestra las métricas obtenidas en la simulación</p></h2>
+						<table class="table table-striped">
+							<tr><td>Tiempo de Respuesta (T)</td><td id="tf">0</td></tr>
+							<tr><td>Tiempo de Espera (E)</td><td id="ef">0</td></tr>
+							<tr><td>Numero de procesos (P)</td><td id="pf">0</td></tr>
+							<tr><td>Resultado de la Metrica: </td><td id="metf">0</td></tr>
+						</table>
+					</div>-->
+
+
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="dist/js/bootstrap.min.js"></script>
+	<script src="script/jspdf.js"></script>
+</body>
+</html>

@@ -75,8 +75,6 @@ $(document).ready(function(){
 	recursos();	
 	
 	SJF();	
-	SJFB();	
-	SJFC();	
 	
 	$('#btn_recursos').on("click",function(){			
 			var no =$('#i_recurso').val();	
@@ -351,7 +349,6 @@ function DiagramarProceso(nodo){
 	if(nodo!=null){
 		text +="<p>proceso "+nodo.proceso;
 		text +="<p>Tiempo de Ejecución:"+nodo.tiempo;
-		text +="<p>Quantum: "+ nodo.quantum;
 		text += "<p> Recurso :"+nodo.recurso.nombre;
 	}else{
 		$("#proceso").animate({opacity:'0'},100);
@@ -490,40 +487,6 @@ function calcularMetrica1(cp,c,st){
     $("#p1").html( cpUno +" Procesos"); //Cantidad de procesos
     
     analizarRendimiento(1, metrica); 
-}
-
-function calcularMetrica(){
-			// var metrica = 0;
-			// metrica = (ct - stt)/cpt;
-
-			// $("#metricasf").click(function(){
-			// 	$("#metf").html(metrica + " Milisegundos");
-			// });
-
-			// $("#metricasf").click(function(){
-			// 	$("#tf").html(ct + " Milisegundos");
-			// });
-			
-			// $("#metricasf").click(function(){
-			// 	$("#ef").html( ct-stt +" Milisegundos");
-			// });
-			// $("#metricasf").click(function(){
-			// 	$("#pf").html( cpt +" Procesos");
-			// });
-	if(terminado1==true && terminado2 == true && terminado3==true){
-
-        metricaTotal = (ct - stt)/cpt;
-        metricaTotal = metricaTotal.toFixed(3);
-
-        $("#metf").html(metricaTotal + " ticks");
-
-        $("#tf").html(ct.toFixed(3) + " ticks");
-
-        $("#ef").html( (ct-stt).toFixed(3) +" ticks");
-
-        $("#pf").html( cpt +" Procesos");
-        analizarRendimiento(0, metricaTotal);
-    }
 }
 
 /*ANÁLISIS DE RENDIMIENTO*/

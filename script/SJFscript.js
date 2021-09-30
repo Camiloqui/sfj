@@ -325,7 +325,7 @@ function DiagramarCola(i){
 	text +="<ul class='lista'>";
 	while(!cola.vacia()){
 		nodo = cola.extraerPrimero();
-		text +="<li><p>proceso "+nodo.proceso+ "  "+ nodo.recurso.nombre + "</p></li>";
+		text +="<li><p>Proceso:"+nodo.proceso+ "  Rafaga:"+ nodo.tiempo + "</p></li>";
 	}	
 	text +="</ul>";
 	$(textoCola).html(text);

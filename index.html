@@ -1,164 +1,162 @@
-<!doctype html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" type="text/css" href="css/estilos.css">
-	<script type="text/javascript" src="script/jquery-2.0.3.min.js"></script>
-	<script type="text/javascript" src="script/nodo.js"></script>
-	<script type="text/javascript" src="script/cola.js"></script>	
-	<script type="text/javascript" src="script/SJFscript.js"></script>
-	
-	<link rel="stylesheet" href="dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="dist/css/bootstrap-theme.min.css">
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script type="text/javascript" src="script/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="script/proceso.js"></script>
+        <script type="text/javascript" src="script/nodo.js"></script>
+        <script type="text/javascript" src="script/cola.js"></script>
+        <script type="text/javascript" src="script/procesador.js"></script>
+        <script type="text/javascript" src="script/Disponibles.js"></script>
+        <script type="text/javascript" src="script/script.js"></script>
+        <link href="estilos/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="estilos/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="estilos/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+        <link href="estilos/miEstilo.css" rel="stylesheet">
+        <script type="text/javascript" src="gantt/d3.v3.min.js"></script>
+        <script type="text/javascript" src="gantt/gantt-chart-d3.js"></script>
+        <script type="text/javascript" src="gantt/miGantt.js"></script>
+        <link href="gantt/estilosGantt.css" rel="stylesheet">
 
-	<title>Shortest Job First - Programa</title>
-</head>
-<body>
+        <title>Algoritmo de planificacion: Prioridad</title>
+    </head>
+    <body>
+        
 
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
+        <div class ="Procesos">
+            <div class ="row">
+                <div class="col-md-12 formulario">
+                    <h4>Procesos</h4>
+                    <form action="" class="form-horizontal">
+                        <div class="form-group form-group-sm">
+                            <label for="nombre1" class="col-sm-2 control-label">Nombre</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control input-sm" id="nombre1" placeholder="Nombre Proceso" disabled >
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="tiempo1" class="col-sm-2 control-label">Tiempo Rafaga</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control input-sm" id="tiempo1" placeholder="Tiempo Rafaga">
+                            </div>
+                        </div>
 
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.html">Inicio</a></li>
-					<!--<li><a href="acerca.html">Acerca de</a></li>
-					-->
-					<li style="margin-top: 8px;">
-						<!--<button id="recursosadd" type="button" class="btn btn-info" id="btn_recursos">Mostrar Recursos</button>-->
-						<button type="button" class="btn btn-info" id="btnP1">Pausar CPU</button>
-						<button type="button" class="btn btn-info" id="btnIniciar" style="display:none">Iniciar CPU</button>
-						<!-- <select id="selectPausar">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-						</select> -->
-					</li>
-				</ul>
-			</div><!--/.nav-collapse -->
-		</div>
-	</div>
-	<!--- Cuerpo -->
-	<!--Recursos-->
-	<br>
-	<div id="convenciones">
-		<h3 id="tituloConv">Leyenda</h2>
-		<li style="color:#8258FA;">Proceso Nuevo</li>
-		<li style="color:#40FF00;">Proceso en Seccion Critica</li>
-		<li style="color:white;">Proceso en cola de Listos</li>
-		<li style="color:#FACC2E;">Proceso en cola de Suspendidos</li>
-		<li style="color:#FA5858;">Proceso en cola de Bloqueados</li>
-		<li style="color:#58D3F7;">Proceso Terminado</li>
-		<!-- <span class="convItem" style="color:#8258FA;">Proceso Nuevo</span>
-		<span class="convItem" style="color:#40FF00;">Zona Critica</span>
-		<span class="convItem" style="color:#white;">Listos</span>
-		<span class="convItem" style="color:#FACC2E;">Suspendidos</span>
-		<span class="convItem" style="color:#FA5858;">Bloqueados</span>
-		<span class="convItem" style="color:#58D3F7;">Terminado</span> -->
-	</div>
-	<!--	<div id="contenedorR">
-		<div style="" >
-			<h2>Recursos Existentes</h2>
-			<div id="recursos">
-				<ul id="listaR">
-
-				</ul>
-			</div>
-		</div>
-		<h2>Agregar Recursos</h2>
-
-		<div class="">
-			<p>Ingrese el nombre del recurso</p>
-			<input class="inputs" id="i_recurso" type="text" ></input>	
-			<br>
-			<button type="button" class="btn btn-info" id="btn_recursos">Agregar</button>	
-		</div>	
-	</div>	-->
-		<div id="contenedor2" class="contWrapper procesadorUno">
-			<div id="contenedorP1" class="contenedoresProc">
-				<h2 class="procesos"><p class="bg-primary titleProcesoUno">Agregar Procesos</p></h2>	
-				<p>Ingrese el recurso a utilizar</p>	
-
-				<!--<select id="sel"></select>
-				--><button type="button" class="btn btn-info" id="btn_proceso1">Agregar</button></p></h2>
-			</div>
-			<div class="gettcanvas"><h2><p class="bg-primary titleCPUUno">Tabla de Gantt</p></h2>
-				<div class="contGant"><canvas id="gant"  width="1100" height="500"></canvas></div>
-			</div>
-			</div>
-			<!--Agregar proceso-->
+                        <div class="form-group form-group-sm">
+                            <label for="Prioridad" class="col-sm-2 control-label">Prioridad</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control input-sm" id="Prioridad" placeholder="Prioridad">
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="col-sm-3">
+                                <button type="button" class="btn btn-primary btn-sm" id="crear">Crear proceso</button>
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="button" class="btn btn-primary btn-sm" id="crear1">Crear 3 procesos</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-primary btn-sm" id="ejecutar1">Ejecutar</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-primary btn-sm" id="interrumpir1" disabled>Detener</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
 
-			<div id="contenedor" class="contWrapper procesadorUno">
-				<h2><p class="bg-primary tituloCPUUno">CPU</p></h2>
-				<div id="reloj"></div>
-				<div id="seccion-critica">
-					<div id="proceso"></div>
-				</div>		
-				<div id="mensaje">
-				</div>
-				<div class="contRespuesta"><div id="respuesta"></div></div>
-				<div id="secciones">
-					<p class="letras">Listos</p>
-					<p class="letras">Bloqueados</p>
-					<p class="letras">Suspendidos</p>
-					<p class="letras">Terminados</p>
-				</div>
-				<div class="columna" id="listos"></div>
-				<div class="columna" id="bloqueados"></div>
-				<div class="columna" id="suspendidos"></div>
-				<div class="columna" id="terminados"></div>
-			</div>
+        <div class="page-header"></div>
+        <div class ="Contenido">
+            <div class ="row">
+                <div class="col-md-12">
+                    <div class="procesador">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <h4>Seccion Critica</h4>
+                            </div>
+                            <div class="col-md-5">
+                                <table class="table table-striped" id="SeccionCritica">
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Tiempo:</label>
+                            <label id="cronometro1" >0</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4>Listos</h4>
+                                <div class="cola1">
+                                    <table class="table table-striped" id="listos1">
+                                    </table>
+                                </div>
 
-			
-					
+                            </div>
+                        </div>
 
-					<div id="contenedor7" class="contWrapper contMetricas">
-						<h2><p class="bg-primary tituloMetrica">Metricas por CPU</p></h2>
-						
-						<div class="columnaM">
-							<h2><p class="bg-primary">Elementos:</p></h2>
-							<table class="table table-striped">
-								<tr><td>Tiempo de Respuesta (T)</td></tr>
-								<tr><td>Tiempo de Espera (E)</td></tr>
-								<tr><td>Numero de procesos (P)</tr>
-								<tr><td>Resultado de la Metrica:</tr>
-							</table>
-						</div>
-						<div class="columnaM">
-							<h2><p class="bg-primary">CPU 1</p></h2>
-							<table class="table table-striped">
-								<tr><td id="t1">0</td></tr>
-								<tr><td id="e1">0</td></tr>
-								<tr><td id="p1">0</td></tr>
-								<tr><td id="met1">0</td></tr>
-							</table>
-						</div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4>Bloqueados</h4>
+                                <div class="cola1">
+                                    <table class="table table-striped" id="bloqueados1">
+                                    </table>
+                                </div>
 
-					</div> 
-					<!--<div id="contenedorM" class="contWrapper contMetricasObte">
-						<h2><p class="bg-primary tituloMetricasObte">Muestra las métricas obtenidas en la simulación</p></h2>
-						<table class="table table-striped">
-							<tr><td>Tiempo de Respuesta (T)</td><td id="tf">0</td></tr>
-							<tr><td>Tiempo de Espera (E)</td><td id="ef">0</td></tr>
-							<tr><td>Numero de procesos (P)</td><td id="pf">0</td></tr>
-							<tr><td>Resultado de la Metrica: </td><td id="metf">0</td></tr>
-						</table>
-					</div>-->
+                            </div>
+                            <div class="col-sm-6">
+                                <h4>Terminados</h4>
+                                <div class="cola1">
+                                    <table class="table table-striped" id="terminados1">
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="page-header"></div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Diagrama de Gantt</h3>
+                </div>
+                <div class="col-sm-10" id="dGantt1">
+                </div>
+                <div class="col-sm-2" id="indicadores">
+                    <div>
+                        <canvas id="rectangulo-Ejecucion"></canvas>
+                        <h4>Ejecucion</h4>
+                    </div>
+                    <div>
+                        <canvas id="rectangulo-Espera"></canvas>
+                        <h4>Espera</h4>
+                    </div>
+                    <div>
+                        <canvas id="rectangulo-Bloqueado"></canvas>
+                        <h4>Bloqueo</h4>
+                    </div>
+                    <div>
+                        <canvas id="rectangulo-suspendido"></canvas>
+                        <h4>Expulsado</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 tablass">
+                    <h3>Informacion del procesamiento</h3>
+                    <table class="table table-striped" id="vrendimiento1">
+                    </table>
+                </div>
+            </div>
+        </div>
 
+    </body>
 
-	<!-- Bootstrap core JavaScript
-	================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="dist/js/bootstrap.min.js"></script>
-</body>
 </html>

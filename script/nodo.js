@@ -1,14 +1,4 @@
-/*------------------
-	OBJETO NODO
--------------------*/
-
-//constructor
-function nodo(){
-	var	proceso;
-	var	tiempo;
-	var	quantum;	
-	var	sig;
-	var anterior;
-	var recurso;
-	var estado;
-} 
+function Nodo(){
+	this.proceso;
+	this.sig;
+}

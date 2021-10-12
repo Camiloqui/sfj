@@ -1,0 +1,72 @@
+body{
+	text-align: center;
+	margin: 0 0px;		
+	background-color:  #FFFFFF;
+	font:Arial 12;	
+}
+.container-fluid{
+	margin: 0px 40px;
+        background-color: #B0C4DE;
+}
+
+.Procesos{
+        width: 750px;
+	height: 250px;
+        margin: 0px auto;
+	background-color: #FFFFFF;
+}
+
+.cola1{
+	border: 1px solid black;
+	height: 150px;
+	background: #7CD0FF;
+	overflow: auto;
+}
+
+.procesador{
+	border: 1px solid black;
+	padding: 5px;
+	background: #B0C4DE;
+}
+.contenedor{
+	padding: 10px;
+}
+
+.Contenido{
+    width: 850px;
+    height: 460px;
+     margin: 0px auto;
+}
+
+table{
+	font-size: 15px;
+}
+iframe{
+	width: 80%;
+	height: 300px;
+}
+.tablass{
+	overflow: auto;
+}
+
+#rectangulo-Ejecucion, #rectangulo-Espera, #rectangulo-Bloqueado, #rectangulo-suspendido {
+    width: 150px;
+    height: 25px;
+    border: solid 1px #000;
+}
+
+#rectangulo-Ejecucion{
+    background-color: #3CE358;
+}
+   
+#rectangulo-Espera{
+    background-color: #3A9ED7;
+}
+
+#rectangulo-Bloqueado{
+    background-color: #ff0000;
+}
+
+#rectangulo-suspendido{
+    background-color: #F2D516;
+}

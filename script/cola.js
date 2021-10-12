@@ -1,159 +1,141 @@
-/*------------------
-	OBJETO COLA
--------------------*/
-//constructor
-function cola(){
-	this.raiz = null;
-	this.fondo = null;
-	this.insertarPrimero = insertarNodoP;
-	this.insertarUltimo = insertarNodoU;
-	this.extraerPrimero = extraerNodoP;
-	this.extraerUltimo = extraerNodoU;
-	this.ordenarQuantum = ordenarQ;
-	this.vacia = vacia;
+
+function Cola() {
+
+    this.nodoRaiz = null;
+    this.nodoFondo = null;
+    this.tam = 0;
+
+    this.Listavacia = vacia;
+    this.Listainsertar = insertar;
+    this.Listaatender = atender;
+    this.ListagetRaiz = getRaiz;
+    this.ListagetTam = getTam;
+    this.ListaOrdenar = ordenar;
+    this.Envejecer = envejecer;
+    this.ReducirPrioridad = reducirprioridad;
+    this.PrioridadRaiz = prioridadraiz;
 }
 
-//inserta un nodo en la cola de primero
-function insertarNodoP(proceso, tiempo, quantum, recurso, estado){
-	var nuevo = new nodo();
-	nuevo.proceso = proceso;
-	nuevo.tiempo = tiempo;
-	nuevo.quantum = quantum;
-	nuevo.recurso = recurso;
-	nuevo.estado = estado;
-	nuevo.sig = null;
-
-	if(this.vacia()){
-		this.raiz = nuevo;
-        this.fondo = nuevo;
-	}else{
-		this.raiz = nuevo;
-		this.raiz.sig = this.fondo;
-		this.fondo = this.raiz;
-	}
+function ordenar(proceso) {
+    if (this.nodoRaiz == null) {
+        this.Listainsertar(proceso);
+    } else {
+        if (parseInt(proceso.prioridad) >= parseInt(this.nodoFondo.proceso.prioridad)) {
+            this.Listainsertar(proceso);
+        } else {
+            var colaAux = new Cola();
+            var procesoAux;
+            while (!this.Listavacia()) {
+                procesoAux = this.Listaatender();
+                if (parseInt(proceso.prioridad) < parseInt(procesoAux.prioridad)) {
+                    colaAux.Listainsertar(proceso);
+                    colaAux.Listainsertar(procesoAux);
+                    break;
+                } else {
+                    colaAux.Listainsertar(procesoAux);
+                }
+            }
+            while (!this.Listavacia()) {
+                procesoAux = this.Listaatender();
+                colaAux.Listainsertar(procesoAux);
+            }
+            while (!colaAux.Listavacia()) {
+                procesoAux = colaAux.Listaatender();
+                this.Listainsertar(procesoAux);
+            }
+        }
+        this.tam++;
+    }
 }
 
-//inserta un nodo en la cola de ultimo
-function insertarNodoU(proceso, tiempo, quantum, recurso, estado){
-	var nuevo = new nodo();
-	var colaTemp = new cola();
-	nuevo.proceso = proceso;
-	nuevo.tiempo = tiempo;
-	nuevo.quantum = quantum;
-	nuevo.recurso = recurso;
-	nuevo.estado = estado;
-	nuevo.sig = null;
-
-	if(this.vacia()){
-		this.raiz = nuevo;
-        this.fondo = nuevo;
-	}else{
-		while(!this.vacia()){	
-			var temp = new nodo();		
-			temp = this.extraerPrimero();
-			colaTemp.insertarPrimero(temp.proceso, temp.tiempo, temp.quantum, temp.recurso, temp.estado); 		
-		}
-		this.insertarPrimero(proceso, tiempo, quantum, recurso, estado);		
-		while(!colaTemp.vacia()){
-			var temp = new nodo();		
-			temp = colaTemp.extraerPrimero();
-			this.insertarPrimero(temp.proceso, temp.tiempo, temp.quantum, temp.recurso, temp.estado); 	
-		}
-	}
-}
-
-//retorna el primer nodo de la cola
-function extraerNodoP(){
-	var nuevo = this.raiz;
-	if(!this.vacia()){
-		this.raiz = this.raiz.sig;
-	}
-	return nuevo;
-}
-
-//retorna el ultimo nodo de la cola
-function extraerNodoU(){
-	var nuevo = new nodo();
-	var colaTemp = new cola();
-	while(this.raiz.sig!=null){	
-		var temp = new nodo();		
-		temp = this.extraerPrimero();
-		colaTemp.insertarPrimero(temp.proceso, temp.tiempo, temp.quantum, temp.recurso, temp.estado); 		
-	}
-	nuevo = this.extraerPrimero();		
-	while(!colaTemp.vacia()){
-		var temp = new nodo();		
-		temp = colaTemp.extraerPrimero();
-		this.insertarPrimero(temp.proceso, temp.tiempo, temp.quantum, temp.recurso, temp,estado); 	
-	}
-	return nuevo;
-}
-
-//devuelva true si la cola esta vacia
-function vacia(){
-	if (this.raiz == null) {
+function vacia() {
+    if (this.nodoRaiz == null) {
         return true;
     } else {
         return false;
     }
 }
 
-function ordenarQ(tamañoCola){
+function insertar(proceso) {
+    var nuevo = new Nodo();
 
-	var i;
-	var temp = new nodo();
-	var temp2 = new nodo(); 	
-	var colaTemp = new cola();
-	var colaTemp2 = new cola();
+    nuevo.proceso = proceso;
+    nuevo.sig = null;
 
-	
-	for (i = 1; i < tamañoCola; i++){
-		//alert();
-
-		if(this.raiz.sig != null){
-			while(!this.vacia()){
-				temp = this.extraerPrimero();
-				if (!this.vacia()){
-					temp2 = this.extraerPrimero();
-					if (temp2.tiempo > temp.tiempo){
-						colaTemp.insertarPrimero(temp.proceso, temp.tiempo, temp.quantum, temp.recurso, temp.estado);
-						colaTemp2.insertarPrimero(temp2.proceso, temp2.tiempo, temp2.quantum, temp2.recurso, temp2.estado);						
-						while(!this.vacia()){
-							var temp5 = new nodo();		
-							temp5 = this.extraerPrimero();
-						colaTemp2.insertarPrimero(temp5.proceso, temp5.tiempo, temp5.quantum, temp5.recurso, temp5.estado); 	
-						}
-						while(!colaTemp2.vacia()){
-							var temp6 = new nodo();		
-							temp6 = colaTemp2.extraerPrimero();
-						this.insertarPrimero(temp6.proceso, temp6.tiempo, temp6.quantum, temp6.recurso, temp6.estado); 	
-						}
-					}else{
-						colaTemp.insertarPrimero(temp2.proceso, temp2.tiempo, temp2.quantum, temp2.recurso, temp2.estado);
-						colaTemp2.insertarPrimero(temp.proceso, temp.tiempo, temp.quantum, temp.recurso, temp.estado);						
-						while(!this.vacia()){
-							var temp5 = new nodo();		
-							temp5 = this.extraerPrimero();
-						colaTemp2.insertarPrimero(temp5.proceso, temp5.tiempo, temp5.quantum, temp5.recurso, temp5.estado); 	
-						}
-						while(!colaTemp2.vacia()){
-							var temp6 = new nodo();		
-							temp6 = colaTemp2.extraerPrimero();
-						this.insertarPrimero(temp6.proceso, temp6.tiempo, temp6.quantum, temp6.recurso, temp6.estado); 	
-						}	
-					}
-				}else{
-					colaTemp.insertarPrimero(temp.proceso, temp.tiempo, temp.quantum, temp.recurso, temp.estado); 
-				}
-			}
-
-			while(!colaTemp.vacia()){
-				var temp = new nodo();		
-				temp = colaTemp.extraerPrimero();
-				this.insertarPrimero(temp.proceso, temp.tiempo, temp.quantum, temp.recurso, temp.estado); 	
-			}
-		}
-	}
-	//alert();
-	
+    if (this.nodoRaiz == null) {
+        this.nodoRaiz = nuevo;
+        this.nodoFondo = nuevo;
+    } else {
+        this.nodoFondo.sig = nuevo;
+        this.nodoFondo = nuevo;
+    }
+    this.tam++;
 }
+
+function reducirprioridad(Aux) {
+    if (Aux.proceso.prioridad != 1) {
+        if (Aux.proceso.enve > 0) {
+            Aux.proceso.enve--;
+        } else {
+            Aux.proceso.prioridad--;
+            if (Aux.proceso.prioridad == 2) {
+                Aux.proceso.enve = 12;
+            }
+            if (Aux.proceso.prioridad == 3) {
+                Aux.proceso.enve = 9;
+            }
+            if (Aux.proceso.prioridad == 4) {
+                Aux.proceso.enve = 6;
+            }
+        }
+    }
+}
+
+function envejecer() {
+    var Aux = new Nodo();
+    if (this.nodoRaiz == null) {
+    } else {
+        Aux = this.nodoRaiz;
+        while (Aux.sig != null) {
+            this.ReducirPrioridad(Aux);
+            Aux = Aux.sig;
+        }
+        Aux = this.nodoFondo;
+        this.ReducirPrioridad(Aux);
+    }
+}
+
+
+function atender() {
+    if (!this.Listavacia()) {
+        var aux = this.nodoRaiz;
+        if (this.nodoRaiz == this.nodoFondo) {
+            this.nodoRaiz = null;
+            this.nodoFondo = null;
+        } else {
+            this.nodoRaiz = this.nodoRaiz.sig;
+        }
+        return aux.proceso;
+    } else {
+        return 0;
+    }
+}
+
+function getRaiz() {
+    var aux = new Nodo();
+    aux = this.nodoRaiz;
+    return aux;
+}
+
+function prioridadraiz() {
+    if (this.nodoRaiz == null) {
+    } else {
+        return this.nodoRaiz.proceso.prioridad;
+    }
+}
+
+function getTam() {
+    return this.tam;
+}
+
+ 

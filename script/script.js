@@ -113,7 +113,14 @@ function dibujarProceso(proceso) {
     var procesoAux = "<tr>";
     procesoAux += "<td>" + proceso.nombre + "</td>";
     procesoAux += "<td>" + "T.Rafaga:" + proceso.tiempo + "</td>";
-    procesoAux += "<td>" + "Prioridad:" + proceso.prioridad + "</td>";
+    procesoAux += "<td>" + "Metodo:" ;
+    if(proceso.prioridad==1){
+        procesoAux +=  "Round Robin" + "</td>";
+    }else if(proceso.prioridad==2){
+        procesoAux +=  "SJF" + "</td>";
+    }else{
+        procesoAux +=  "FCFS" + "</td>";
+    }
     procesoAux += "</tr>";
     return procesoAux;
 }

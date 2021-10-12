@@ -5,7 +5,7 @@ var hilo1;
 $(document).ready(function() {
 
     procesador1.CalcularRendimiento();
-    $("#vrendimiento1").html(dibujarRendiminetos(procesador1.rendimientoProcesos));
+    $("#vrendimiento1").html(dibujarRendimientos(procesador1.rendimientoProcesos));
 
     preestablecer();  
 
@@ -48,7 +48,7 @@ $(document).ready(function() {
             pintarGantt(procesador1.estados, "#dGantt1");
 
             procesador1.CalcularRendimiento();
-            $("#vrendimiento1").html(dibujarRendiminetos(procesador1.rendimientoProcesos));
+            $("#vrendimiento1").html(dibujarRendimientos(procesador1.rendimientoProcesos));
 
         }, 1000);
         //setTimeout(crear, 5000);
@@ -74,7 +74,7 @@ $(document).ready(function() {
 function preestablecer() {
     $("#nombre1").val("P" + p1);
     $("#tiempo1").val(Math.floor((Math.random() * 10) + 1));
-    $("#Prioridad").val(Math.floor((Math.random() * 4) + 1));
+    $("#Prioridad").val(Math.floor((Math.random() * 3) + 1));
 }
 
 function dibujarCola(cola) {
@@ -103,7 +103,7 @@ function dibujarProceso(proceso) {
 }
 
 
-function dibujarRendiminetos(procesos) {
+function dibujarRendimientos(procesos) {
     var texto = "<tr><td>Nombre</td><td>Prioridad</td><td>Tiempo Llegada</td><td>Tiempo Rafaga</td><td>Tiempo Comienzo</td><td>Tiempo Finalizacion</td><td>Tiempo Retorno</td><td>Tiempo Espera</td></tr>";
     for (var i = 0; i < procesos.length; i++) {
         texto += "<tr><td>P" + i + "</td>";

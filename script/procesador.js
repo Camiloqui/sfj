@@ -105,7 +105,7 @@ function correrProcesador(disponibilidad) {
                 disponibilidad.estado = 0;
             }
         }
-        this.listos.Envejecer();
+        //this.listos.Envejecer();
     }
     this.GuardarEstadosProcesos();
 }

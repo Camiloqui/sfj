@@ -86,14 +86,25 @@ function correrProcesador(disponibilidad) {
             disponibilidad.estado = 1;
             this.prioridadNuevo = 100;
         } else {
+            procesoAux.qcont--;
             procesoAux.tiempo--;
             if (procesoAux.tiempo == 0) {
                 disponibilidad.estado = 1;
                 this.terminados.Listainsertar(procesoAux);
             }
             else {
-                this.CPU.Listainsertar(procesoAux);
+                if ((procesoAux.qcont == 0) && (procesoAux.prioridad == 1)) {
+                    procesoAux.qcont = 4;
+                    procesoAux.tRestante = 1;
+                    this.suspendidos.Listainsertar(procesoAux);
+                    disponibilidad.estado = 1;
+                    this.prioridadNuevo = 100;
+                }
+                else{
+                    this.CPU.Listainsertar(procesoAux);
+                }
             }
+
         }
     }
 

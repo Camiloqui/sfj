@@ -20,21 +20,54 @@ function ordenar(proceso) {
     if (this.nodoRaiz == null) {
         this.Listainsertar(proceso);
     } else {
-        if (parseInt(proceso.prioridad) >= parseInt(this.nodoFondo.proceso.prioridad)) {
-            this.Listainsertar(proceso);
-        } else {
-            var colaAux = new Cola();
-            var procesoAux;
+        var colaAux = new Cola();
+        var procesoAux;
+        if (proceso.prioridad == 2) {
             while (!this.Listavacia()) {
                 procesoAux = this.Listaatender();
                 if (parseInt(proceso.prioridad) < parseInt(procesoAux.prioridad)) {
                     colaAux.Listainsertar(proceso);
                     colaAux.Listainsertar(procesoAux);
                     break;
+                } else if (proceso.prioridad == procesoAux.prioridad){ //Si comparten prioridad SJF, comparan tiempos
+                    if (proceso.tiempo < procesoAux.tiempo) {
+                        colaAux.Listainsertar(proceso);
+                        colaAux.Listainsertar(procesoAux);
+                        break;
+                    } else {
+                        colaAux.Listainsertar(procesoAux);
+                    }
                 } else {
+                    colaAux.Listainsertar(proceso);
                     colaAux.Listainsertar(procesoAux);
+                    break;
                 }
             }
+
+            while (!this.Listavacia()) {
+                procesoAux = this.Listaatender();
+                colaAux.Listainsertar(procesoAux);
+            }
+            while (!colaAux.Listavacia()) {
+                procesoAux = colaAux.Listaatender();
+                this.Listainsertar(procesoAux);
+            }
+        } else {
+            if (parseInt(proceso.prioridad) >= parseInt(this.nodoFondo.proceso.prioridad)) {
+                this.Listainsertar(proceso);
+            } else {
+                while (!this.Listavacia()) {
+                    procesoAux = this.Listaatender();
+                    if (parseInt(proceso.prioridad) < parseInt(procesoAux.prioridad)) {
+                        colaAux.Listainsertar(proceso);
+                        colaAux.Listainsertar(procesoAux);
+                        break;
+                    } else {
+                        colaAux.Listainsertar(procesoAux);
+                    }
+                }
+            }
+
             while (!this.Listavacia()) {
                 procesoAux = this.Listaatender();
                 colaAux.Listainsertar(procesoAux);
@@ -138,4 +171,3 @@ function getTam() {
     return this.tam;
 }
 
- 

@@ -30,7 +30,7 @@ function ordenar(proceso) {
                     colaAux.Listainsertar(procesoAux);
                     break;
                 } else if (proceso.prioridad == procesoAux.prioridad){ //Si comparten prioridad SJF, comparan tiempos
-                    if (proceso.tiempo < procesoAux.tiempo) {
+                    if (parseInt(proceso.tiempo) < parseInt(procesoAux.tiempo)) {
                         colaAux.Listainsertar(proceso);
                         colaAux.Listainsertar(procesoAux);
                         break;
@@ -38,9 +38,10 @@ function ordenar(proceso) {
                         colaAux.Listainsertar(procesoAux);
                     }
                 } else {
-                    colaAux.Listainsertar(proceso);
                     colaAux.Listainsertar(procesoAux);
-                    break;
+                    if (this.Listavacia()){
+                        colaAux.Listainsertar(proceso);
+                    }
                 }
             }
 

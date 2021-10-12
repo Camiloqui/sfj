@@ -19,7 +19,6 @@ $(document).ready(function() {
     output = output + entry[1];
   };
         var prioridad ;
-        var prioridad2 = document.querySelector("#Prioridad");
         var prioridadTemp = output;
     
         var prioridad;

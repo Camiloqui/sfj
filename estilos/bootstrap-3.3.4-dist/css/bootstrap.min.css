@@ -2687,24 +2687,24 @@ select[multiple].form-group-lg .form-control,textarea.form-group-lg .form-contro
 }
 .btn-primary {
     color:#000000;
-    background-color:#3A9ED7;
-    border-color:#3A9ED7;
+    background-color:#d73a3a;
+    border-color:#d73a3a;
 }
 .btn-primary.active,.btn-primary.focus,.btn-primary:active,.btn-primary:focus,.btn-primary:hover,.open>.dropdown-toggle.btn-primary {
     color:#000000;
-    background-color:#7CD0FF;
-    border-color:#7CD0FF;
+    background-color:#ff7c7c;
+    border-color:#ff7c7c;
 }
 .btn-primary.active,.btn-primary:active,.open>.dropdown-toggle.btn-primary {
     background-image:none
 }
 .btn-primary.disabled,.btn-primary.disabled.active,.btn-primary.disabled.focus,.btn-primary.disabled:active,.btn-primary.disabled:focus,.btn-primary.disabled:hover,.btn-primary[disabled],.btn-primary[disabled].active,.btn-primary[disabled].focus,.btn-primary[disabled]:active,.btn-primary[disabled]:focus,.btn-primary[disabled]:hover,fieldset[disabled] .btn-primary,fieldset[disabled] .btn-primary.active,fieldset[disabled] .btn-primary.focus,fieldset[disabled] .btn-primary:active,fieldset[disabled] .btn-primary:focus,fieldset[disabled] .btn-primary:hover {
-    background-color:#5679BA;
-    border-color:#5679BA;
+    background-color:#ba5656;
+    border-color:#ba5656;
 }
 .btn-primary .badge {
-    color:#337ab7;
-    background-color:#fff
+    color:#b73333;
+    background-color:rgb(255, 255, 255)
 }
 .btn-success {
     color:#fff;

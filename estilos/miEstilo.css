@@ -6,7 +6,7 @@ body{
 }
 .container-fluid{
 	margin: 0px 40px;
-        background-color: #fcc9c9;
+        background-color: #ffffff;
 }
 
 .Procesos{
@@ -19,14 +19,14 @@ body{
 .cola1{
 	border: 1px solid black;
 	height: 150px;
-	background: #ffa4a4;
+	background: #ffebeb;
 	overflow: auto;
 }
 
 .procesador{
 	border: 1px solid black;
 	padding: 5px;
-	background: #ff4343;
+	background: #ff7c7c;
 }
 .contenedor{
 	padding: 10px;

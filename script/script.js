@@ -56,6 +56,7 @@ $(document).ready(function() {
             procesador1.CorrerProcesador(disponibles);
             $("#listos1").html(dibujarCola(procesador1.listos));
             $("#bloqueados1").html(dibujarCola(procesador1.bloqueados));
+            $("#suspendidos1").html(dibujarCola(procesador1.suspendidos));
             $("#terminados1").html(dibujarCola(procesador1.terminados));
             $("#SeccionCritica").html(dibujarCola(procesador1.CPU));
             $("#cronometro1").text(procesador1.cronometro);
@@ -80,6 +81,7 @@ $(document).ready(function() {
         clearInterval(hilo1);
         $("#listos1").html(dibujarCola(procesador1.listos));
         $("#bloqueados1").html(dibujarCola(procesador1.bloqueados));
+        $("#suspendidos1").html(dibujarCola(procesador1.suspendidos));
         $("#terminados1").html(dibujarCola(procesador1.terminados));
     });
 

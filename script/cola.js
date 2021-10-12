@@ -36,6 +36,9 @@ function ordenar(proceso) {
                         break;
                     } else {
                         colaAux.Listainsertar(procesoAux);
+                        if (this.Listavacia()){
+                            colaAux.Listainsertar(proceso);
+                        }
                     }
                 } else {
                     colaAux.Listainsertar(procesoAux);

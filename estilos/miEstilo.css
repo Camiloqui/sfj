@@ -6,27 +6,27 @@ body{
 }
 .container-fluid{
 	margin: 0px 40px;
-        background-color: #B0C4DE;
+        background-color: #fcc9c9;
 }
 
 .Procesos{
         width: 750px;
 	height: 250px;
         margin: 0px auto;
-	background-color: #FFFFFF;
+	background-color: #f3e5e5;
 }
 
 .cola1{
 	border: 1px solid black;
 	height: 150px;
-	background: #7CD0FF;
+	background: #ffa4a4;
 	overflow: auto;
 }
 
 .procesador{
 	border: 1px solid black;
 	padding: 5px;
-	background: #B0C4DE;
+	background: #ff4343;
 }
 .contenedor{
 	padding: 10px;

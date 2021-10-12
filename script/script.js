@@ -127,11 +127,18 @@ function dibujarProceso(proceso) {
 
 
 function dibujarRendiminetos(procesos) {
-    var texto = "<tr><td>Nombre</td><td>Prioridad</td><td>Tiempo Llegada</td><td>Tiempo Rafaga</td><td>Tiempo Comienzo</td><td>Tiempo Finalizacion</td><td>Tiempo Retorno</td><td>Tiempo Espera</td></tr>";
+    var texto = "<tr><td>Nombre</td><td>Metodo</td><td>Tiempo Llegada</td><td>Tiempo Rafaga</td><td>Tiempo Comienzo</td><td>Tiempo Finalizacion</td><td>Tiempo Retorno</td><td>Tiempo Espera</td></tr>";
     for (var i = 0; i < procesos.length; i++) {
-        texto += "<tr><td>P" + i + "</td>";
-        for (var j = 0; j < 7; j++) {
-            texto += "<td>" + procesos[i][j] + "</td>";
+        texto += "<tr><td>P" + i + "</td>"+"<td>";
+        if(procesos[i][0]==1){
+            texto += "Round Robin";
+        }else if(procesos[i][0]==2){
+            texto += "SJF";
+        }else if(procesos[i][0]==3){
+            texto += "FCFS";
+        }
+        for (var j = 1; j < 7; j++) {  
+            texto +=  "</td>"+"<td>" + procesos[i][j] + "</td>";
         }
         texto += "</tr>";
     }
